@@ -1,6 +1,5 @@
 ﻿namespace Catalog.API.Products.UpdateProduct;
-public record UpdateProductCommand(Guid Id, string Name, List<string> Category, string Description, string ImageFile, decimal Price)
-              : ICommand<UpdateProductResult>;
+
 public record UpdateProductResult(bool IsSuccess);
 internal class UpdateProductHandler(IDocumentSession session, ILogger<UpdateProductHandler> logger) : ICommandHandler<UpdateProductCommand, UpdateProductResult>
 {
@@ -10,7 +9,7 @@ internal class UpdateProductHandler(IDocumentSession session, ILogger<UpdateProd
         Product? product = await session.LoadAsync<Product>(command.Id,cancellationToken);
         if(product is null)
         {
-            throw new ProductNotFoundException();
+            throw new ProductNotFoundException(command.Id);
         }
         product.Name = command.Name;
         product.Category = command.Category;

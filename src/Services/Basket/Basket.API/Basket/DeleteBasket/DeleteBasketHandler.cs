@@ -1,5 +1,5 @@
-﻿namespace Basket.API.Basket.GetBasket;
+﻿namespace Basket.API.Basket.DeleteBasket;
 
-public class GetBasketHandler
+public class DeleteBasketHandler
 {
 }

@@ -12,3 +12,6 @@ global using FluentValidation;
 global using HealthChecks.UI.Client;
 global using Marten;
 global using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+global using BuildingBlocks.Exceptions;
+global using Basket.API.Exceptions;
+global using Marten.Schema;

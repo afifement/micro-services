@@ -2,16 +2,14 @@
 
 
 public record StoreBasketResult(string UserName);
-internal class StoreBasketCommandHandler(IDocumentSession session)
+internal class StoreBasketCommandHandler(IBasketRepository repository)
                : ICommandHandler<StoreBasketCommand, StoreBasketResult>
 {
     public async Task<StoreBasketResult> Handle(StoreBasketCommand request, CancellationToken cancellationToken)
     {
         ShoppingCart cart = request.Cart;
-        //save database
-        session.Store(cart);
-        await session.SaveChangesAsync(cancellationToken);
+        await repository.StoreBasketAsync(cart, cancellationToken); 
         //return result 
-        return new StoreBasketResult("swn");
+        return new StoreBasketResult(cart.UserName);
     }
 }

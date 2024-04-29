@@ -29,7 +29,7 @@ services:
     container_name: distributedcache
     restart: always
     ports:
-         - "6397:6397"
+         - "6379:6379"
           
   catalog.api:
     environment:
@@ -52,9 +52,10 @@ services:
       - ASPNETCORE_HTTP_PORTS=8080
       - ASPNETCORE_HTTPS_PORTS=8081
       - ConnectionStrings__Database=Server=basketdb;Port=5432;Database=BasketDb;User Id=postgres;Password=postgres;Include Error Detail=true
- 
+      - ConnectionStrings__Redis=distributedcache:6379
     depends_on:
       - basketdb
+      - distributedcache
     ports:
       - "5060:8080"
       - "5061:8081"

@@ -40,8 +40,8 @@ services:
     depends_on:
       - catalogdb
     ports:
-      - "6060:8080"
-      - "6061:8081"
+      - "7070:8080"
+      - "7071:8081"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
@@ -57,8 +57,8 @@ services:
       - basketdb
       - distributedcache
     ports:
-      - "5060:8080"
-      - "5061:8081"
+      - "5050:8080"
+      - "5051:8081"
     volumes:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro

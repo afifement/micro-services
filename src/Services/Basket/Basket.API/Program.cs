@@ -4,7 +4,8 @@ using Weasel.Core;
 
 var builder = WebApplication.CreateBuilder(args);
 var assembly = typeof(Program).Assembly;
-// Add services to the container
+
+// Add applications services
 
 builder.Services.AddMediatR(config =>
 {
@@ -13,8 +14,9 @@ builder.Services.AddMediatR(config =>
     config.AddOpenBehavior(typeof(LoggingBehavior<,>));
 
 });
-builder.Services.AddValidatorsFromAssembly(assembly);
 builder.Services.AddCarter();
+ 
+// Data services
 builder.Services
     .AddMarten(opts =>
     {
@@ -23,14 +25,22 @@ builder.Services
         opts.Schema.For<ShoppingCart>().Identity(x => x.UserName);
     })
     .UseLightweightSessions();
-
-builder.Services.AddScoped<IBasketRepository,BasketRepository>();
-builder.Services.Decorate<IBasketRepository,CachedBasketRepository>();
+builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+builder.Services.Decorate<IBasketRepository, CachedBasketRepository>(); 
 builder.Services.AddStackExchangeRedisCache(options =>{
     options.Configuration = builder.Configuration.GetConnectionString("Redis");
 });
-builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
+// Grpc services
+builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
+{
+    options.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
+});
+
+
+// Cross-cutting services
+builder.Services.AddValidatorsFromAssembly(assembly);
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 builder.Services.AddHealthChecks()
                 .AddNpgSql(builder.Configuration.GetConnectionString("Database")!)
                 .AddRedis(builder.Configuration.GetConnectionString("Redis")!);

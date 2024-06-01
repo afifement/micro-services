@@ -1,4 +1,4 @@
-﻿namespace Ordering.Domain.Models.ValueObjects;
+﻿namespace Ordering.Domain.ValueObjects;
 
 public record Address
 {
@@ -28,8 +28,8 @@ public record Address
     }
     public static Address Of(string firstName, string lastName, string? emailAddress, string addressLine, string country, string state, string zipCode)
     {
-        ArgumentException.ThrowIfNullOrEmpty(emailAddress);
-        ArgumentException.ThrowIfNullOrEmpty(addressLine);
+        ArgumentException.ThrowIfNullOrWhiteSpace(emailAddress);
+        ArgumentException.ThrowIfNullOrWhiteSpace(addressLine);
         return new Address(firstName,  lastName,  emailAddress,  addressLine,  country,  state,  zipCode);
     }
 

@@ -8,3 +8,6 @@ global using Ordering.Domain.ValueObjects;
 global using Ordering.Infrastructure.Data;
 global using Ordering.Domain.Enums;
 global using Microsoft.AspNetCore.Builder;
+global using Microsoft.EntityFrameworkCore.Diagnostics;
+global using Microsoft.EntityFrameworkCore.ChangeTracking;
+global using Ordering.Domain.Abstractions;

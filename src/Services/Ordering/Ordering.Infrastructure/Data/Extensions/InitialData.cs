@@ -1,6 +1,6 @@
 ﻿ namespace Ordering.Infrastructure.Data.Extensions;
 
-internal class InitialData
+public static class InitialData
 {
     public static IEnumerable<Customer> Customers =>
     new List<Customer>

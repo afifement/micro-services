@@ -10,3 +10,4 @@ global using Ordering.Application.Data;
 global using Ordering.Domain.ValueObjects;
 global using BuildingBlocks.Exceptions;
 global using Ordering.Application.Exceptions;
+global using BuildingBlocks.Behaviors;

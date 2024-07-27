@@ -13,3 +13,5 @@ global using Ordering.Application.Orders.Queries.GetOrders;
 global using Ordering.Application.Orders.Queries.GetOrdersByCustomer;
 global using Ordering.Application.Orders.Queries.GetOrdersByName;
 global using BuildingBlocks.Exceptions.Handler;
+global using HealthChecks.UI.Client;
+global using Microsoft.AspNetCore.Diagnostics.HealthChecks;

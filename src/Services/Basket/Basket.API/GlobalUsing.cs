@@ -16,3 +16,7 @@ global using Microsoft.Extensions.Caching.Distributed;
 global using System.Text.Json;
 global using Discount.Grpc;
 global using Weasel.Core;
+global using BuildingBlocks.Messaging.MassTransit;
+global using BuildingBlocks.Messaging.Events;
+global using MassTransit;
+global using Basket.API.Dtos;

@@ -16,3 +16,8 @@ global using Ordering.Domain.Events;
 global using Microsoft.Extensions.Logging;
 global using Ordering.Application.Extensions;
 global using BuildingBlocks.Pagination;
+global using BuildingBlocks.Messaging.MassTransit;
+global using Microsoft.Extensions.Configuration;
+global using BuildingBlocks.Messaging.Events;
+global using MassTransit;
+global using Ordering.Application.Orders.Commands.CreateOrder;
